@@ -33,8 +33,8 @@ services:
 
 databases:
   # PostgreSQL Database
-  - name: burger-db
-    databaseName: burgerdb
+  - name: BDCodianB
+    databaseName: BDCodianB
     plan: free
     region: oregon
-    user: burgeruser
+    user: postgres
