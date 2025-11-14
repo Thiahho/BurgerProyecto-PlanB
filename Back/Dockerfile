@@ -18,14 +18,9 @@ RUN dotnet publish "Back/Back.csproj" -c Release -o /app/publish /p:UseAppHost=f
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 
-# Install EF Core tools for migrations
-RUN dotnet tool install --global dotnet-ef --version 8.0.10
-ENV PATH="$PATH:/root/.dotnet/tools"
-
 COPY --from=publish /app/publish .
 
 # Expose port
-EXPOSE 5000
+EXPOSE 10000
 
-# Run migrations and start the app
 ENTRYPOINT ["dotnet", "Back.dll"]
