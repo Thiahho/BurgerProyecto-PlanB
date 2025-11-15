@@ -173,7 +173,7 @@ const OrderManager: React.FC = () => {
           }
         }
       } catch (e) {
-        console.error("Error parsing modifiers for WhatsApp:", e);
+        // console.error("Error parsing modifiers for WhatsApp:", e);
       }
     });
 
@@ -283,7 +283,7 @@ const OrderManager: React.FC = () => {
               }
             }
           } catch (e) {
-            console.error("Error parsing modifiers for CSV:", e);
+            // console.error("Error parsing modifiers for CSV:", e);
           }
 
           return itemStr;
@@ -563,7 +563,7 @@ const OrderManager: React.FC = () => {
           doc.setFontSize(8);
         }
       } catch (e) {
-        console.error("Error parsing modifiers for PDF:", e);
+        // console.error("Error parsing modifiers for PDF:", e);
       }
 
       yPos += 2;
@@ -1005,16 +1005,16 @@ const OrderManager: React.FC = () => {
                     try {
                       if (item.modifiersSnapshot) {
                         modifiersData = JSON.parse(item.modifiersSnapshot);
-                        console.log(
+                        // console.log(
                           `Item ${index} modifiersData:`,
                           modifiersData
                         );
                       }
                     } catch (e) {
-                      console.error("Error parsing modifiers:", e);
+                      // console.error("Error parsing modifiers:", e);
                     }
 
-                    console.log(`Item ${index}:`, {
+                    // console.log(`Item ${index}:`, {
                       modifiersSnapshot: item.modifiersSnapshot,
                       modifiersTotalCents: item.modifiersTotalCents,
                       modifiersData,

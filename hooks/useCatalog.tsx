@@ -61,7 +61,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
       setCategories(transformedCategories);
       setBusinessInfo(apiBusinessInfo);
     } catch (error) {
-      console.error("Failed to fetch catalog data", error);
+      // console.error("Failed to fetch catalog data", error);
     } finally {
       setIsLoading(false);
     }
@@ -79,7 +79,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
       await fetchData(); // Recargar datos para reflejar el cambio
       return true;
     } catch (error) {
-      console.error("Failed to add product", error);
+      // console.error("Failed to add product", error);
       return false;
     }
   };
@@ -95,7 +95,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
       await fetchData();
       return true;
     } catch (error) {
-      console.error("Failed to update product", error);
+      // console.error("Failed to update product", error);
       return false;
     }
   };
@@ -106,7 +106,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
       await fetchData();
       return true;
     } catch (error) {
-      console.error("Failed to delete product", error);
+      // console.error("Failed to delete product", error);
       return false;
     }
   };
@@ -119,7 +119,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
       await fetchData();
       return true;
     } catch (error) {
-      console.error("Failed to add category", error);
+      // console.error("Failed to add category", error);
       return false;
     }
   };
@@ -132,7 +132,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
       await fetchData();
       return true;
     } catch (error) {
-      console.error("Failed to update category", error);
+      // console.error("Failed to update category", error);
       return false;
     }
   };
@@ -143,7 +143,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
       await fetchData();
       return true;
     } catch (error) {
-      console.error("Failed to delete category", error);
+      // console.error("Failed to delete category", error);
       return false;
     }
   };
@@ -155,7 +155,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
       await fetchData();
       return true;
     } catch (error) {
-      console.error("Failed to update business info", error);
+      // console.error("Failed to update business info", error);
       return false;
     }
   };

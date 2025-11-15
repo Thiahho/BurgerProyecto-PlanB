@@ -28,7 +28,7 @@ export const useModifiers = () => {
       setModifiers(response.data);
     } catch (err: any) {
       setError(err.response?.data?.message || "Error loading modifiers");
-      console.error("Error fetching modifiers:", err);
+      // console.error("Error fetching modifiers:", err);
     } finally {
       setLoading(false);
     }
@@ -43,7 +43,7 @@ export const useModifiers = () => {
       return true;
     } catch (err: any) {
       setError(err.response?.data?.message || "Error creating modifier");
-      console.error("Error creating modifier:", err);
+      // console.error("Error creating modifier:", err);
       return false;
     } finally {
       setLoading(false);
@@ -59,7 +59,7 @@ export const useModifiers = () => {
       return true;
     } catch (err: any) {
       setError(err.response?.data?.message || "Error updating modifier");
-      console.error("Error updating modifier:", err);
+      // console.error("Error updating modifier:", err);
       return false;
     } finally {
       setLoading(false);
@@ -75,7 +75,7 @@ export const useModifiers = () => {
       return true;
     } catch (err: any) {
       setError(err.response?.data?.message || "Error deleting modifier");
-      console.error("Error deleting modifier:", err);
+      // console.error("Error deleting modifier:", err);
       return false;
     } finally {
       setLoading(false);
@@ -110,7 +110,7 @@ export const useModifiersWithProducts = () => {
       setModifiers(data);
     } catch (err: any) {
       setError(err.response?.data?.message || "Error loading modifiers");
-      console.error("Error fetching modifiers with products:", err);
+      // console.error("Error fetching modifiers with products:", err);
     } finally {
       setLoading(false);
     }
@@ -125,7 +125,7 @@ export const useModifiersWithProducts = () => {
       return true;
     } catch (err: any) {
       setError(err.response?.data?.message || "Error creating modifier");
-      console.error("Error creating modifier:", err);
+      // console.error("Error creating modifier:", err);
       return false;
     } finally {
       setLoading(false);
@@ -141,7 +141,7 @@ export const useModifiersWithProducts = () => {
       return true;
     } catch (err: any) {
       setError(err.response?.data?.message || "Error updating modifier");
-      console.error("Error updating modifier:", err);
+      // console.error("Error updating modifier:", err);
       return false;
     } finally {
       setLoading(false);
@@ -157,7 +157,7 @@ export const useModifiersWithProducts = () => {
       return true;
     } catch (err: any) {
       setError(err.response?.data?.message || "Error deleting modifier");
-      console.error("Error deleting modifier:", err);
+      // console.error("Error deleting modifier:", err);
       return false;
     } finally {
       setLoading(false);

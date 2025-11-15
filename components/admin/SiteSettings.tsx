@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useCatalog } from "../../hooks/useCatalog";
 import { useToast } from "../../contexts/ToastContext";
 import { BusinessInfo } from "../../types";
-import { getFullApiUrl } from "../../services/api/apiClient";
 
 const SiteSettings: React.FC = () => {
   const { businessInfo, updateBusinessInfo, isLoading } = useCatalog();

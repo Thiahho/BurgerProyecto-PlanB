@@ -14,7 +14,7 @@ export const useOrders = () => {
       const response = await apiClient.get<OrderResponse[]>("/api/admin/orders");
       setOrders(response.data);
     } catch (err: any) {
-      console.error("Error fetching orders:", err);
+      // console.error("Error fetching orders:", err);
       setError(err.response?.data?.message || "Error al cargar las órdenes");
     } finally {
       setLoading(false);
@@ -26,7 +26,7 @@ export const useOrders = () => {
       const response = await apiClient.get<OrderResponse>(`/api/admin/orders/${id}`);
       return response.data;
     } catch (err: any) {
-      console.error("Error fetching order:", err);
+      // console.error("Error fetching order:", err);
       return null;
     }
   };
@@ -42,7 +42,7 @@ export const useOrders = () => {
       );
       return true;
     } catch (err: any) {
-      console.error("Error updating order status:", err);
+      // console.error("Error updating order status:", err);
       return false;
     }
   };
@@ -53,7 +53,7 @@ export const useOrders = () => {
       setOrders((prev) => prev.filter((order) => order.id !== id));
       return true;
     } catch (err: any) {
-      console.error("Error deleting order:", err);
+      // console.error("Error deleting order:", err);
       return false;
     }
   };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../../contexts/CartContext";
-import { OrderType, CheckoutData, OrderRequest, CartItem } from "../../types";
-import { api, getProductsImageUrl, createOrder } from "../../services/api/apiClient";
+import { OrderType, OrderRequest, CartItem } from "../../types";
+import { api, getProductsImageUrl } from "../../services/api/apiClient";
 import { useToast } from "../../contexts/ToastContext";
 import ProductDetailModal from "./ProductDetailModal";
 
@@ -12,7 +12,6 @@ const CheckoutModal: React.FC = () => {
     isCheckoutOpen,
     closeCheckout,
     updateQuantity,
-    removeFromCart,
     clearCart,
   } = useCart();
   const { showToast } = useToast();
@@ -21,7 +20,6 @@ const CheckoutModal: React.FC = () => {
   const [scheduledDateTime, setScheduledDateTime] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
-  const [customerEmail, setCustomerEmail] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [reference, setReference] = useState("");
   const [note, setNote] = useState("");
@@ -152,6 +150,10 @@ const CheckoutModal: React.FC = () => {
           }
 
           // Si es un producto normal
+          if (!item.product) {
+            throw new Error("Producto no encontrado en el carrito");
+          }
+
           // Calcular precio de modificadores
           let modifiersPriceCents = 0;
           if (item.size === "doble") {
@@ -212,7 +214,7 @@ const CheckoutModal: React.FC = () => {
       clearCart();
       closeCheckout();
     } catch (error: any) {
-      console.error("Error al crear orden:", error);
+      // console.error("Error al crear orden:", error);
       const errorMessage =
         error.response?.data?.message ||
         error.response?.data ||
@@ -832,7 +834,7 @@ const CheckoutModal: React.FC = () => {
       </div>
 
       {/* Modal para editar item del carrito */}
-      {editingCartItem && (
+      {editingCartItem && editingCartItem.product && (
         <ProductDetailModal
           product={editingCartItem.product}
           onClose={() => setEditingCartItem(null)}

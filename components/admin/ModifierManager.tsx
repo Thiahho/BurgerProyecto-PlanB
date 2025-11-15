@@ -36,7 +36,7 @@ const ModifierManager: React.FC = () => {
       const categories = await getModifierCategories();
       setExistingCategories(categories);
     } catch (err) {
-      console.error("Error loading categories:", err);
+      // console.error("Error loading categories:", err);
     }
   };
 

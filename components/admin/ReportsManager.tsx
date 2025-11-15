@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useOrders } from "../../hooks/useOrders";
 import { useToast } from "../../contexts/ToastContext";
-import { OrderResponse } from "../../types";
 
 interface DailySales {
   date: string;

@@ -136,7 +136,7 @@ const ProductsManager: React.FC = () => {
       showToast("Orden actualizado correctamente", "success");
     } catch (error) {
       showToast("Error al reordenar productos", "error");
-      console.error(error);
+      // console.error(error);
     }
 
     setDraggedProduct(null);
@@ -167,7 +167,7 @@ const ProductsManager: React.FC = () => {
       showToast("Orden actualizado correctamente", "success");
     } catch (error) {
       showToast("Error al reordenar productos", "error");
-      console.error(error);
+      // console.error(error);
     }
   };
 

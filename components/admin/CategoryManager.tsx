@@ -36,7 +36,7 @@ const CategoryManager: React.FC = () => {
 
     const success = currentCategory.id
       ? await updateCategory(currentCategory as Category)
-      : await addCategory({ name: currentCategory.name });
+      : await addCategory({ name: currentCategory.name, sortOrder: categories.length });
 
     if (success) {
       showToast(
@@ -97,7 +97,7 @@ const CategoryManager: React.FC = () => {
       showToast("Orden actualizado correctamente", "success");
     } catch (error) {
       showToast("Error al reordenar categorías", "error");
-      console.error(error);
+      // console.error(error);
     }
 
     setDraggedCategory(null);
@@ -128,7 +128,7 @@ const CategoryManager: React.FC = () => {
       showToast("Orden actualizado correctamente", "success");
     } catch (error) {
       showToast("Error al reordenar categorías", "error");
-      console.error(error);
+      // console.error(error);
     }
   };
 

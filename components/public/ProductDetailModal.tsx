@@ -70,7 +70,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     const loadModifiers = async () => {
       try {
         const backendModifiers = await getProductModifiers(product.id);
-        console.log("Modificadores del producto cargados:", backendModifiers);
+        // console.log("Modificadores del producto cargados:", backendModifiers);
         // Convertir ModifierDto a ProductModifier
         const converted: ProductModifier[] = backendModifiers.map(
           (m: ModifierDto) => ({
@@ -80,10 +80,10 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             type: m.category as any, // Usar la categoría del backend
           })
         );
-        console.log("Modificadores convertidos:", converted);
+        // console.log("Modificadores convertidos:", converted);
         setModifiers(converted);
       } catch (error) {
-        console.error("Error loading modifiers:", error);
+        // console.error("Error loading modifiers:", error);
         // Usar fallback si hay error
         setModifiers([]);
       } finally {
@@ -103,7 +103,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     return acc;
   }, {} as Record<string, ProductModifier[]>);
 
-  console.log("Modificadores agrupados dinámicamente:", groupedByCategory);
+  // console.log("Modificadores agrupados dinámicamente:", groupedByCategory);
 
   // Obtener todas las categorías disponibles
   const availableCategories = Object.keys(groupedByCategory);

@@ -25,7 +25,7 @@ const CatalogPage: React.FC = () => {
         const data = await api.get<Combo[]>("/api/public/combos");
         setCombos(data);
       } catch (error) {
-        console.error("Error loading combos:", error);
+        // console.error("Error loading combos:", error);
       }
     };
     loadCombos();
@@ -38,10 +38,6 @@ const CatalogPage: React.FC = () => {
       </div>
     );
   }
-
-  const filteredProducts = selectedCategoryId
-    ? products.filter((p) => p.categoryId === selectedCategoryId)
-    : products;
 
   return (
     <div className="bg-black min-h-screen flex flex-col">

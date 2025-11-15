@@ -32,7 +32,7 @@ const ProductModifiersModal: React.FC<ProductModifiersModalProps> = ({
       const mods = await getProductModifiers(productId);
       setProductModifiers(mods);
     } catch (error) {
-      console.error("Error loading product modifiers:", error);
+      // console.error("Error loading product modifiers:", error);
     } finally {
       setLoading(false);
     }
@@ -53,7 +53,7 @@ const ProductModifiersModal: React.FC<ProductModifiersModalProps> = ({
         setProductModifiers((prev) => [...prev, modifier]);
       }
     } catch (error) {
-      console.error("Error toggling modifier:", error);
+      // console.error("Error toggling modifier:", error);
       alert("Error al actualizar modificador");
     } finally {
       setSaving(false);
@@ -83,7 +83,7 @@ const ProductModifiersModal: React.FC<ProductModifiersModalProps> = ({
         setProductModifiers((prev) => [...prev, ...toAssign]);
       }
     } catch (error) {
-      console.error("Error toggling all modifiers:", error);
+      // console.error("Error toggling all modifiers:", error);
       alert("Error al actualizar modificadores");
     } finally {
       setSaving(false);
