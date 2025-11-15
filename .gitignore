@@ -80,7 +80,8 @@ Back/*.user
 Back/appsettings.Development.json
 Back/appsettings.example.json
 Back/.env.example
-Back/wwwroot/images/
+Back/wwwroot/images/*
+!Back/wwwroot/images/banner.webp
 
 # Database
 *.db

@@ -77,7 +77,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Configurar CORS desde appsettings
-var allowedOrigins = builder.Configuration["Cors:AllowedOrigins"]?.Split(',') ?? new[] { "http://localhost:5173" };
+var allowedOrigins = builder.Configuration["Cors:AllowedOrigins"]?
+    .Split(',')
+    .Select(origin => origin.Trim().TrimEnd('/'))
+    .Where(origin => !string.IsNullOrWhiteSpace(origin))
+    .ToArray()
+    ?? new[] { "http://localhost:5173" };
 
 builder.Services.AddCors(options =>
 {
