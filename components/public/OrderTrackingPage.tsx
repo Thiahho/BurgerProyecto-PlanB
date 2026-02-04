@@ -90,7 +90,7 @@ const OrderTrackingPage: React.FC = () => {
     : 0;
 
   return (
-    <div className="min-h-screen bg-background text-white px-4 py-8">
+    <div className="min-h-screen text-white px-4 py-8">
       <div className="max-w-3xl mx-auto space-y-6">
         <header className="text-center space-y-2">
           <h1 className="text-3xl font-bold">Seguimiento del pedido</h1>
@@ -311,7 +311,7 @@ const OrderTrackingPage: React.FC = () => {
               </div>
             </section>
 
-            <section className="bg-secondary/50 rounded-xl p-6 space-y-4">
+             <section className="bg-secondary/50 rounded-xl p-6 space-y-4">
               <h3 className="text-lg font-semibold">Historial de estados</h3>
               <div className="space-y-3">
                 {order.history.length === 0 && (

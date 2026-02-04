@@ -38,8 +38,7 @@ const Header: React.FC = () => {
           }}
         />
 
-        {/* OVERLAY GRADIENTE PROFESIONAL */}
-        {/* OVERLAYS PARA INTEGRAR CON FONDO MARINO */}
+         {/* OVERLAYS PARA INTEGRAR CON FONDO MARINO */}
         <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 via-secondary/40 to-secondary/80"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/60 to-transparent"></div>
 

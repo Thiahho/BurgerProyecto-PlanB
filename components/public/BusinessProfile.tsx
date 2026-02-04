@@ -19,9 +19,8 @@ const BusinessProfile: React.FC<BusinessProfileProps> = ({ businessInfo }) => {
       <div className="w-full max-w-2xl relative">
         {/* Logo superpuesto al banner */}
         <div className="absolute -top-8 left-0">
-          <div className="w-16 h-16 rounded-full bg-secondary border-4 border-secondary/80 shadow-lg overflow-hidden flex items-center justify-center">
-            <img
-              src="/images/cartelito.webp"
+<div className="w-16 h-16 rounded-full bg-secondary border-4 border-secondary/80 shadow-lg overflow-hidden flex items-center justify-center">              <img
+              src="/images/logobob.webp"
               alt="Logo"
               className="w-full h-full object-cover"
               loading="lazy"
@@ -46,7 +45,7 @@ const BusinessProfile: React.FC<BusinessProfileProps> = ({ businessInfo }) => {
 
           {/* Horario */}
           <div className="mb-4">
-            <div className="border-2 border-primary rounded-lg py-2.5 text-center bg-secondary/40">
+<div className="border-2 border-primary rounded-lg py-2.5 text-center bg-secondary/40">
               <span className="text-white font-medium">
                 Abre {getTodayHours()}
               </span>

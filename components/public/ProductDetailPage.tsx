@@ -19,7 +19,7 @@ const ProductsDetailPage: React.FC = () => {
     : "/placeholder.png";
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen">
       <Header />
       <main className="container mx-auto px-4 py-8">
         <div className="bg-white p-8 rounded-lg shadow-lg">

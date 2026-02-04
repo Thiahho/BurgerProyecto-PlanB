@@ -20,8 +20,7 @@ const ProductsCard: React.FC<ProductsCardProps> = ({ product, hasTwoForOne }) =>
     <>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="bg-secondary/60 rounded-2xl overflow-hidden flex flex-col transform hover:scale-105 transition-transform duration-300 cursor-pointer text-left border border-white/10 hover:border-primary"
-      >
+className="bg-secondary/60 rounded-2xl overflow-hidden flex flex-col transform hover:scale-105 transition-transform duration-300 cursor-pointer text-left border border-white/10 hover:border-primary">
         <div className="relative">
           <img
             src={imageUrl}

@@ -401,7 +401,7 @@ const CheckoutModal: React.FC = () => {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
         <div className="bg-secondary/70 rounded-2xl w-full max-w-lg p-6 text-center space-y-4">
-          <div className="text-5xl mb-2">✅</div>
+                  <div className="text-5xl mb-2">✅</div>
           <h2 className="text-2xl font-bold text-white">¡Pedido confirmado!</h2>
           <p className="text-gray-300">
             Tu pedido #{createdOrderId} ya fue recibido. Guardá este link para
