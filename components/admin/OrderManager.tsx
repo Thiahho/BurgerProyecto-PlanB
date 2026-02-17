@@ -858,7 +858,7 @@ const OrderManager: React.FC = () => {
             <span className="sm:hidden">📊 CSV</span>
           </button>
           <button
-            onClick={fetchOrders}
+            onClick={() => fetchOrders()}
             className="flex-1 sm:flex-initial bg-blue-500 hover:bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm sm:text-base"
           >
             🔄<span className="hidden sm:inline ml-1">Actualizar</span>
