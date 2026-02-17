@@ -29,7 +29,7 @@ const OrderManager: React.FC = () => {
     fetchOrders,
   } = useOrders();
   const { showToast, showConfirm } = useToast();
-  const { onNewOrderAlert } = useAdminAlerts();
+  // const { onNewOrderAlert } = useAdminAlerts();
   const [selectedOrder, setSelectedOrder] = useState<OrderResponse | null>(
     null,
   );
@@ -50,14 +50,14 @@ const OrderManager: React.FC = () => {
   }, [fetchOrders]);
 
   // Suscribirse a alertas de nuevas órdenes y refrescar la lista (solo una vez al montar)
-  useEffect(() => {
-    onNewOrderAlert((orderEvent) => {
-      // console.log('📦 Refrescando lista de órdenes por nueva alerta:', orderEvent.id);
-      // Usar la referencia actual para evitar dependencias obsoletas
-      fetchOrdersRef.current({ silent: true });
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Solo ejecutar una vez al montar
+  // useEffect(() => {
+  //   onNewOrderAlert((orderEvent) => {
+  //     // console.log('📦 Refrescando lista de órdenes por nueva alerta:', orderEvent.id);
+  //     // Usar la referencia actual para evitar dependencias obsoletas
+  //     fetchOrdersRef.current({ silent: true });
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []); // Solo ejecutar una vez al montar
 
   const filteredOrders = orders.filter((orders) => {
     // Filtrar por estado

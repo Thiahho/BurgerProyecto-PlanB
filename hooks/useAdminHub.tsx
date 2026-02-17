@@ -88,21 +88,21 @@ export const useAdminHub = ({
     });
 
     // Eventos de conexión
-    connection.onclose((error) => {
-      // console.log('SignalR connection closed', error);
-      isConnectingRef.current = false;
-      onDisconnectedRef.current?.();
-    });
+    // connection.onclose((error) => {
+    //   // console.log('SignalR connection closed', error);
+    //   isConnectingRef.current = false;
+    //   onDisconnectedRef.current?.();
+    // });
 
-    connection.onreconnecting((error) => {
-      // console.log('SignalR reconnecting...', error);
-      onReconnectingRef.current?.();
-    });
+    // connection.onreconnecting((error) => {
+    //   // console.log('SignalR reconnecting...', error);
+    //   onReconnectingRef.current?.();
+    // });
 
-    connection.onreconnected((connectionId) => {
-      // console.log('SignalR reconnected', connectionId);
-      onReconnectedRef.current?.();
-    });
+    // connection.onreconnected((connectionId) => {
+    //   // console.log('SignalR reconnected', connectionId);
+    //   onReconnectedRef.current?.();
+    // });
 
     // Iniciar la conexión
     connection.start()
