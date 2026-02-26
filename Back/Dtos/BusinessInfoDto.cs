@@ -52,6 +52,7 @@
         public ActivePromotionDto? ActivePromotion { get; set; }
         public UpsellConfigDto? UpsellConfig { get; set; }
         public TwoForOneConfigDto? TwoForOneConfig { get; set; }
+        public IEnumerable<ComboDto> Combos { get; set; } = new List<ComboDto>();
     }
 
     public class ActivePromotionDto

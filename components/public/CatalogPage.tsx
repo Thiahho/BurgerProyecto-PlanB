@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useCatalog } from "../../hooks/useCatalog";
 import { useCart } from "../../contexts/CartContext";
 import { useToast } from "../../contexts/ToastContext";
-import { api } from "../../services/api/apiClient";
-import { Combo } from "../../types";
 import Header from "./Header";
 import Footer from "./Footer";
 import ProductsCard from "./ProductCard";
@@ -11,25 +9,12 @@ import CheckoutModal from "./CheckoutModal";
 import BusinessProfile from "./BusinessProfile";
 
 const CatalogPage: React.FC = () => {
-  const { products, categories, businessInfo, activePromotion, twoForOneConfig, isLoading } = useCatalog();
+  const { products, categories, combos, businessInfo, activePromotion, twoForOneConfig, isLoading } = useCatalog();
   const { addComboToCart } = useCart();
   const { showToast } = useToast();
-  const [combos, setCombos] = useState<Combo[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null
   );
-
-  useEffect(() => {
-    const loadCombos = async () => {
-      try {
-        const data = await api.get<Combo[]>("/api/public/combos");
-        setCombos(data);
-      } catch (error) {
-        // console.error("Error loading combos:", error);
-      }
-    };
-    loadCombos();
-  }, []);
 
   if (isLoading) {
     return (

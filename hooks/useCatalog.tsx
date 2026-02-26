@@ -5,12 +5,13 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-import { Products, Category, BusinessInfo, ActivePromotion, UpsellConfig, TwoForOneConfig } from "../types";
+import { Products, Category, BusinessInfo, ActivePromotion, UpsellConfig, TwoForOneConfig, Combo } from "../types";
 import apiClient from "../services/api/apiClient";
 
 interface CatalogContextType {
   products: Products[];
   categories: Category[];
+  combos: Combo[];
   businessInfo: BusinessInfo | null;
   activePromotion: ActivePromotion | null;
   upsellConfig: UpsellConfig | null;
@@ -36,11 +37,12 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [products, setProducts] = useState<Products[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [combos, setCombos] = useState<Combo[]>([]);
   const [businessInfo, setBusinessInfo] = useState<BusinessInfo | null>(null);
   const [activePromotion, setActivePromotion] = useState<ActivePromotion | null>(null);
   const [upsellConfig, setUpsellConfig] = useState<UpsellConfig | null>(null);
   const [twoForOneConfig, setTwoForOneConfig] = useState<TwoForOneConfig | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -49,6 +51,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
       const {
         products: apiProducts,
         categories: apiCategories,
+        combos: apiCombos,
         businessInfo: apiBusinessInfo,
         activePromotion: apiActivePromotion,
         upsellConfig: apiUpsellConfig,
@@ -68,6 +71,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
 
       setProducts(transformedProducts);
       setCategories(transformedCategories);
+      setCombos(apiCombos || []);
       setBusinessInfo(apiBusinessInfo);
       setActivePromotion(apiActivePromotion || null);
       setUpsellConfig(apiUpsellConfig || null);
@@ -175,6 +179,7 @@ export const CatalogProvider: React.FC<{ children: ReactNode }> = ({
   const value = {
     products,
     categories,
+    combos,
     businessInfo,
     activePromotion,
     upsellConfig,

@@ -115,6 +115,27 @@ public async Task<ActionResult<CatalogDto>> GetFullCatalog()
 
     var twoForOneConfig = ResolveTwoForOneConfig(growthSettings);
 
+    // Cargar combos activos
+    var combos = await _context.Combos
+        .Include(c => c.Items)
+        .ThenInclude(ci => ci.Product)
+        .Where(c => c.IsActive)
+        .ToListAsync();
+
+    var combosDto = combos.Select(c => new ComboDto
+    {
+        Id = c.Id,
+        Name = c.Name,
+        PriceCents = c.priceCents,
+        IsActive = c.IsActive,
+        Items = c.Items.Select(ci => new ComboItemDto
+        {
+            ProductId = ci.ProductId,
+            ProductName = ci.Product?.Name ?? "",
+            Qty = ci.Qty
+        }).ToList()
+    }).ToList();
+
     var catalog = new CatalogDto
     {
         Products = products,
@@ -135,7 +156,8 @@ public async Task<ActionResult<CatalogDto>> GetFullCatalog()
                 ProductIds = ParseProductIds(growthSettings.UpsellProductIdsJson)
             }
             : null,
-        TwoForOneConfig = twoForOneConfig
+        TwoForOneConfig = twoForOneConfig,
+        Combos = combosDto
     };
 
     return Ok(catalog);
