@@ -16,12 +16,14 @@ namespace Back.Controller
         private readonly AppDbContext _context;
         private readonly ImageService _imageService;
         private readonly ILogger<ProductsController> _logger;
+        private readonly CatalogCacheService _catalogCache;
 
-        public ProductsController(AppDbContext context, ImageService imageService, ILogger<ProductsController> logger)
+        public ProductsController(AppDbContext context, ImageService imageService, ILogger<ProductsController> logger, CatalogCacheService catalogCache)
         {
             _context = context;
             _imageService = imageService;
             _logger = logger;
+            _catalogCache = catalogCache;
         }
 
         [HttpGet]
@@ -85,6 +87,7 @@ namespace Back.Controller
                 product.ImageData != null && product.ImageData.Length > 0);
 
             await _context.Entry(product).Reference(p => p.Category).LoadAsync();
+            _catalogCache.Invalidate();
 
             return CreatedAtAction(nameof(GetProducts), new { id = product.Id }, new ProductDto
             {
@@ -130,6 +133,7 @@ namespace Back.Controller
         }
 
         await _context.SaveChangesAsync();
+        _catalogCache.Invalidate();
 
         return NoContent();
     }
@@ -146,6 +150,7 @@ namespace Back.Controller
 
         _context.Products.Remove(product);
         await _context.SaveChangesAsync();
+        _catalogCache.Invalidate();
 
         return NoContent();
     }
@@ -165,6 +170,7 @@ namespace Back.Controller
             }
 
             await _context.SaveChangesAsync();
+            _catalogCache.Invalidate();
             return NoContent();
         }
         catch (Exception ex)

@@ -18,6 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         .UseSnakeCaseNamingConvention());
 
 builder.Services.AddScoped<ImageService>();
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<CatalogCacheService>();
 
 // Configurar límite de tamaño de archivos (10MB)
 builder.Services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(options =>

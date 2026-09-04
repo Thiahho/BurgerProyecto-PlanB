@@ -17,11 +17,13 @@ namespace Back.Controller
     {
         private readonly AppDbContext _context;
         private readonly Back.Services.ImageService _imageService;
+        private readonly Back.Services.CatalogCacheService _catalogCache;
 
-        public SettingsController(AppDbContext context, Back.Services.ImageService imageService)
+        public SettingsController(AppDbContext context, Back.Services.ImageService imageService, Back.Services.CatalogCacheService catalogCache)
         {
             _context = context;
             _imageService = imageService;
+            _catalogCache = catalogCache;
         }
 
         [HttpGet]
@@ -111,6 +113,7 @@ namespace Back.Controller
             }
 
             await _context.SaveChangesAsync();
+            _catalogCache.Invalidate();
             return NoContent();
         }
 

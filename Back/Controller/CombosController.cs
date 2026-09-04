@@ -1,6 +1,7 @@
 using Back.Data;
 using Back.Dtos;
 using Back.Models;
+using Back.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +11,12 @@ namespace Back.Controller
     public class CombosController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly CatalogCacheService _catalogCache;
 
-        public CombosController(AppDbContext context)
+        public CombosController(AppDbContext context, CatalogCacheService catalogCache)
         {
             _context = context;
+            _catalogCache = catalogCache;
         }
 
         // GET /api/public/combos - Obtener todos los combos activos (público)
@@ -107,6 +110,7 @@ namespace Back.Controller
                 .Include(ci => ci.Product)
                 .LoadAsync();
 
+            _catalogCache.Invalidate();
             return CreatedAtAction(nameof(GetCombo), new { id = combo.Id }, MapComboToDto(combo));
         }
 
@@ -148,6 +152,7 @@ namespace Back.Controller
             }).ToList();
 
             await _context.SaveChangesAsync();
+            _catalogCache.Invalidate();
 
             return NoContent();
         }
@@ -166,6 +171,7 @@ namespace Back.Controller
 
             _context.Combos.Remove(combo);
             await _context.SaveChangesAsync();
+            _catalogCache.Invalidate();
 
             return NoContent();
         }
@@ -182,6 +188,7 @@ namespace Back.Controller
 
             combo.IsActive = !combo.IsActive;
             await _context.SaveChangesAsync();
+            _catalogCache.Invalidate();
 
             return NoContent();
         }

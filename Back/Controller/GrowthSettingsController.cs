@@ -14,10 +14,12 @@ namespace Back.Controller
     public class GrowthSettingsController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly CatalogCacheService _catalogCache;
 
-        public GrowthSettingsController(AppDbContext context)
+        public GrowthSettingsController(AppDbContext context, CatalogCacheService catalogCache)
         {
             _context = context;
+            _catalogCache = catalogCache;
         }
 
         [HttpGet]
@@ -119,6 +121,7 @@ public async Task<ActionResult<GrowthSettingsDto>> UpdateSettings([FromBody] Gro
     }
 
     await _context.SaveChangesAsync();
+    _catalogCache.Invalidate();
 
     return Ok(MapToDto(settings));
 }

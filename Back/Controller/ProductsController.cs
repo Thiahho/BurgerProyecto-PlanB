@@ -16,15 +16,22 @@ namespace Back.Controller
     public class PublicController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly CatalogCacheService _catalogCache;
 
-        public PublicController(AppDbContext context)
+        public PublicController(AppDbContext context, CatalogCacheService catalogCache)
         {
             _context = context;
+            _catalogCache = catalogCache;
         }
 
      [HttpGet("catalog")]
 public async Task<ActionResult<CatalogDto>> GetFullCatalog()
 {
+    if (_catalogCache.TryGet(out var cachedCatalog) && cachedCatalog != null)
+    {
+        return Ok(cachedCatalog);
+    }
+
     var growthSettings = await _context.GrowthSettings.FindAsync(1);
     var (discountPercent, promoType, promoMessage) = ResolveActivePromotion(growthSettings);
     var maxDiscountPercent = DiscountPricingService.GetMaxDiscountPercent(growthSettings);
@@ -160,6 +167,7 @@ public async Task<ActionResult<CatalogDto>> GetFullCatalog()
         Combos = combosDto
     };
 
+    _catalogCache.Set(catalog);
     return Ok(catalog);
 }
 
@@ -328,6 +336,7 @@ private static TwoForOneConfigDto? ResolveTwoForOneConfig(GrowthSettings? settin
                 _context.BusinessSettings.Add(settings);
 
             await _context.SaveChangesAsync();
+            _catalogCache.Invalidate();
             return NoContent();
         }
 

@@ -1,6 +1,7 @@
 ﻿using Back.Data;
 using Back.Dtos;
 using Back.Models;
+using Back.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,10 +20,12 @@ namespace Back.Controller
     public class CategoriesController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly CatalogCacheService _catalogCache;
 
-        public CategoriesController(AppDbContext context)
+        public CategoriesController(AppDbContext context, CatalogCacheService catalogCache)
         {
             _context = context;
+            _catalogCache = catalogCache;
         }
 
         [HttpGet]
@@ -40,6 +43,7 @@ namespace Back.Controller
             var category = new Category { Name = categoryDto.Name };
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
+            _catalogCache.Invalidate();
 
             return CreatedAtAction(nameof(GetCategories), new { id = category.Id }, new CategoryDto { Id = category.Id, Name = category.Name, SortOrder = category.SortOrder });
         }
@@ -55,6 +59,7 @@ namespace Back.Controller
 
             category.Name = categoryDto.Name;
             await _context.SaveChangesAsync();
+            _catalogCache.Invalidate();
 
             return NoContent();
         }
@@ -76,6 +81,7 @@ namespace Back.Controller
 
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
+            _catalogCache.Invalidate();
 
             return NoContent();
         }
@@ -95,6 +101,7 @@ namespace Back.Controller
                 }
 
                 await _context.SaveChangesAsync();
+                _catalogCache.Invalidate();
                 return NoContent();
             }
             catch (Exception ex)
